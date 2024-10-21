@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://bawhbhakk6q0"]
+[gd_scene load_steps=30 format=3 uid="uid://bawhbhakk6q0"]
 
 [ext_resource type="Texture2D" uid="uid://dpuh1u8ys504u" path="res://Art/Backgrounds/title.jpg" id="1_4neto"]
 [ext_resource type="PackedScene" uid="uid://bm67c4ebptsl8" path="res://Scenes/ScreenFx/Fader.tscn" id="1_6rpfu"]
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_uepmn"]
 [ext_resource type="Texture2D" uid="uid://bk3ht0545kbbp" path="res://Art/UI/Title.png" id="3_qu7fl"]
+[ext_resource type="AudioStream" uid="uid://b338b5okkhbmq" path="res://Sounds/UI/buttonSound.wav" id="4_1eonp"]
 [ext_resource type="Texture2D" uid="uid://h51717e4n5i" path="res://Art/UI/Play.png" id="5_qdvgj"]
 [ext_resource type="Texture2D" uid="uid://ckdsdu8f71hrp" path="res://Art/UI/PlayClick.png" id="6_6mgjc"]
 [ext_resource type="Texture2D" uid="uid://doua04qcaxxcr" path="res://Art/UI/PlayHover.png" id="7_50pjy"]
@@ -35,7 +36,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.9, 2),
 "transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
-"values": [Vector2(311, -500), Vector2(311, 100)]
+"values": [Vector2(-1280, 100), Vector2(311, 100)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -44,10 +45,10 @@ tracks/1/path = NodePath("darkenerRect:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.7, 2.1, 2.5),
+"times": PackedFloat32Array(1, 1.4, 1.8),
 "transitions": PackedFloat32Array(2, 0.5, 1),
 "update": 0,
-"values": [Vector2(0, 736), Vector2(310, 736), Vector2(620, 736)]
+"values": [Vector2(1280, 720), Vector2(1282, 488), Vector2(1284, 256)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -56,10 +57,10 @@ tracks/2/path = NodePath("darkenerRect:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.7, 2.1, 2.5),
+"times": PackedFloat32Array(1, 1.4, 1.8),
 "transitions": PackedFloat32Array(2, 0.5, 1),
 "update": 0,
-"values": [Vector2(640, 0), Vector2(485, 0), Vector2(330, 0)]
+"values": [Vector2(0, 0), Vector2(-1, 48), Vector2(-2, 96)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -262,8 +263,36 @@ tracks/2/keys = {
 "values": [4, 0]
 }
 
+[sub_resource type="Animation" id="Animation_5v1r2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("darkenerRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(330, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("darkenerRect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1282, 488)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wcorq"]
 _data = {
+"RESET": SubResource("Animation_5v1r2"),
 "ShowTitle": SubResource("Animation_caa3g"),
 "deselect": SubResource("Animation_j6p33"),
 "select": SubResource("Animation_uayom")
@@ -326,11 +355,17 @@ libraries = {
 }
 autoplay = "ShowTitle"
 
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1eonp")
+volume_db = -10.0
+bus = &"Sounds"
+
 [node name="darkenerRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 601.25
-offset_right = 678.75
-offset_bottom = 736.0
+offset_left = -2.0
+offset_top = 96.0
+offset_right = 1282.0
+offset_bottom = 352.0
 color = Color(0, 0, 0, 0.313726)
 
 [node name="Title" type="TextureRect" parent="."]
@@ -339,10 +374,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -329.0
-offset_top = 99.9963
-offset_right = 333.0
-offset_bottom = 272.996
+offset_left = -329.002
+offset_top = 100.0
+offset_right = 332.998
+offset_bottom = 388.0
 grow_horizontal = 2
 texture = ExtResource("3_qu7fl")
 
@@ -350,9 +385,9 @@ texture = ExtResource("3_qu7fl")
 visible = false
 layout_mode = 0
 offset_left = 533.0
-offset_top = 400.0
+offset_top = 532.998
 offset_right = 746.0
-offset_bottom = 400.0
+offset_bottom = 536.998
 color = Color(0, 0.4, 0.341176, 1)
 
 [node name="PlayButton" type="TextureButton" parent="."]
@@ -360,9 +395,8 @@ layout_mode = 0
 offset_left = 533.0
 offset_top = 400.0
 offset_right = 746.0
-offset_bottom = 400.0
+offset_bottom = 537.0
 focus_mode = 0
-disabled = true
 texture_normal = ExtResource("5_qdvgj")
 texture_pressed = ExtResource("6_6mgjc")
 texture_hover = ExtResource("7_50pjy")
@@ -370,17 +404,14 @@ texture_disabled = ExtResource("5_qdvgj")
 ignore_texture_size = true
 stretch_mode = 1
 
-[node name="ButtonSound" type="AudioStreamPlayer" parent="PlayButton"]
-
 [node name="ChapterSelectButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 471.0
-offset_top = 737.0
+offset_top = 564.005
 offset_right = 808.0
-offset_bottom = 829.0
+offset_bottom = 656.005
 focus_neighbor_top = NodePath("../PlayButton")
 focus_mode = 0
-disabled = true
 texture_normal = ExtResource("9_7kvel")
 texture_pressed = ExtResource("10_7llqk")
 texture_hover = ExtResource("11_hx0bq")
@@ -476,12 +507,11 @@ text = "                                                                        
 
 [node name="PauseButton" type="TextureButton" parent="SettingsMenu"]
 offset_left = 1164.0
-offset_top = -128.0
+offset_top = 19.9999
 offset_right = 1284.0
-offset_bottom = -8.0
+offset_bottom = 140.0
 scale = Vector2(0.8, 0.8)
 focus_mode = 0
-disabled = true
 toggle_mode = true
 texture_normal = ExtResource("18_jmguy")
 texture_pressed = ExtResource("19_h633f")
