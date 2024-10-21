@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://oj1g3i5u6a8p"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_i6th8"]
+[ext_resource type="Texture2D" uid="uid://d188tn5q0u1i6" path="res://Art/Tilesets/pin.png" id="2_8ptt1"]
+[ext_resource type="AudioStream" uid="uid://7s30kty6662k" path="res://Sounds/player/clink.ogg" id="3_6cpva"]
+[ext_resource type="AudioStream" uid="uid://b1pj26htmhdp4" path="res://Sounds/player/longerhighpitch.ogg" id="4_jt6pw"]
+[ext_resource type="AudioStream" uid="uid://c8ojfxxbm8ym7" path="res://Sounds/player/longerloopslide.ogg" id="4_qc7d4"]
+[ext_resource type="AudioStream" uid="uid://b23eh2rql53kl" path="res://Sounds/hitgroundfromhigh.ogg" id="5_s2pas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iht36"]
+radius = 12.0
+
+[node name="Pin" type="CharacterBody2D" groups=["Pin"]]
+position = Vector2(8, -8)
+script = ExtResource("1_i6th8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 3.14159
+ignore_rotation = false
+
+[node name="Pin" type="CollisionShape2D" parent="." groups=["Pin"]]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_iht36")
+
+[node name="Tile" type="Sprite2D" parent="Pin"]
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_8ptt1")
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+target_position = Vector2(0, 21)
+collision_mask = 2
+
+[node name="clinksound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6cpva")
+max_polyphony = 3
+bus = &"Sounds"
+
+[node name="rollsound" type="AudioStreamPlayer2D" parent="clinksound"]
+stream = ExtResource("4_jt6pw")
+volume_db = -80.0
+pitch_scale = 2.0
+autoplay = true
+bus = &"Sounds"
+
+[node name="slidesound" type="AudioStreamPlayer2D" parent="clinksound"]
+stream = ExtResource("4_qc7d4")
+volume_db = -80.0
+autoplay = true
+bus = &"Sounds"
+
+[node name="hitground" type="AudioStreamPlayer2D" parent="clinksound"]
+stream = ExtResource("5_s2pas")

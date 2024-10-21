@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0h1onbjqgqmx"]
+
+[ext_resource type="Texture2D" uid="uid://d188tn5q0u1i6" path="res://Art/Tilesets/pin.png" id="1_4yupq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iht36"]
+radius = 28.0
+
+[node name="secondaryPin" type="CollisionShape2D"]
+position = Vector2(-112, 0)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("CircleShape2D_iht36")
+
+[node name="Tile2" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(4, 4)
+texture = ExtResource("1_4yupq")

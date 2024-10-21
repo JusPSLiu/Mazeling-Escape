@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=4 uid="uid://gtm6tj8hgoin"]
+
+[ext_resource type="Script" path="res://Scripts/levelScript.gd" id="1_agxq1"]
+[ext_resource type="Texture2D" uid="uid://cx50xi10e8wyg" path="res://Art/Tilesets/tile.png" id="2_1j4vo"]
+[ext_resource type="PackedScene" uid="uid://oj1g3i5u6a8p" path="res://Scenes/pins.tscn" id="3_s77gx"]
+[ext_resource type="PackedScene" uid="uid://d4en42hig3yqf" path="res://Scenes/goal_area.tscn" id="4_dsmu2"]
+[ext_resource type="PackedScene" uid="uid://bm67c4ebptsl8" path="res://Scenes/ScreenFx/Fader.tscn" id="5_p60hh"]
+[ext_resource type="Texture2D" uid="uid://cjixaxk54j1ts" path="res://Art/Backgrounds/back0.jpg" id="6_j786m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvnti"]
+texture = ExtResource("2_1j4vo")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_5vlu3"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_nvnti")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bylsk"]
+size = Vector2(3330, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k14f5"]
+size = Vector2(72, 1016)
+
+[node name="level_0" type="Node2D" node_paths=PackedStringArray("fader")]
+script = ExtResource("1_agxq1")
+fader = NodePath("Fader")
+
+[node name="Player" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAAAAAD7/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD7/wMAAAAAAAAAAAD7/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAP7/AAAAAAAAAAAFAP3/AAAAAAAAAAD7//3/AAAAAAAAAAD8//z/AAAAAAAAAAD9//z/AAAAAAAAAAD+//z/AAAAAAAAAAD7//z/AAAAAAAAAAD///z/AAAAAAAAAAAAAPz/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAADAP7/AAAAAAAAAAAEAP7/AAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAACAAIAAAAAAAAAAAAEAAAAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAD8//7/AAAAAAAAAAD9//7/AAAAAAAAAAD///7/AAAAAAAAAAADAAIAAAAAAAAAAAADAP3/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_5vlu3")
+
+[node name="Pin" parent="." instance=ExtResource("3_s77gx")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 302)
+shape = SubResource("RectangleShape2D_bylsk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1629, -1)
+shape = SubResource("RectangleShape2D_k14f5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1629, -2)
+shape = SubResource("RectangleShape2D_k14f5")
+
+[node name="GoalArea" parent="." instance=ExtResource("4_dsmu2")]
+
+[node name="Fader" parent="." instance=ExtResource("5_p60hh")]
+
+[node name="background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_j786m")
+expand_mode = 1
