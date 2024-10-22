@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://l8pe6gqvkn4v"]
+[gd_scene load_steps=21 format=4 uid="uid://l8pe6gqvkn4v"]
 
 [ext_resource type="Texture2D" uid="uid://cx50xi10e8wyg" path="res://Art/Tilesets/tile.png" id="1_qv3kj"]
 [ext_resource type="Script" path="res://Scripts/levelScript.gd" id="1_wxduh"]
@@ -40,6 +40,21 @@ size = Vector2(3330, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k14f5"]
 size = Vector2(72, 1016)
 
+[sub_resource type="Animation" id="Animation_xf1aq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pin/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qpfl8"]
 resource_name = "trigger"
 length = 0.6
@@ -56,8 +71,9 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_xf1aq"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_nxtu0"]
+resource_name = "disappear"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -65,15 +81,16 @@ tracks/0/path = NodePath("Pin/AnimatedSprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0uneg"]
 _data = {
 "RESET": SubResource("Animation_xf1aq"),
+"disappear": SubResource("Animation_nxtu0"),
 "trigger": SubResource("Animation_qpfl8")
 }
 
@@ -157,4 +174,16 @@ animationName = "trigger"
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_oulw6")
 
+[node name="Area2D2" type="Area2D" parent="AnimationPlayer" node_paths=PackedStringArray("animationPlayer")]
+position = Vector2(-9, 266)
+scale = Vector2(13.5687, 1.32811)
+script = ExtResource("10_7e1c5")
+animationPlayer = NodePath("..")
+animationName = "disappear"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationPlayer/Area2D2"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_oulw6")
+
 [connection signal="body_entered" from="AnimationPlayer/Area2D" to="AnimationPlayer/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="AnimationPlayer/Area2D2" to="AnimationPlayer/Area2D2" method="_on_body_entered"]

@@ -1,6 +1,6 @@
 extends TextureRect
 
-@export var numLevels = 15
+@export var numLevels = 16
 @onready var fader : AnimationPlayer = $Fader
 @onready var levelContainer : GridContainer = $LevelLayer/ChapterMenu/BoxContainer
 @onready var buttonSound : AudioStreamPlayer = $ButtonSound
