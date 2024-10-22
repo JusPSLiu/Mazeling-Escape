@@ -10,6 +10,7 @@ const LERP_DECAY_RATE = 10
 @onready var rollsound : AudioStreamPlayer2D = $clinksound/rollsound
 @onready var slidesound : AudioStreamPlayer2D = $clinksound/slidesound
 @onready var hitground : AudioStreamPlayer2D = $clinksound/hitground
+@onready var cam_shaker : AnimationPlayer = $Camera2D/cam_shaker
 
 var previousVelocity : Vector2
 
@@ -39,9 +40,10 @@ func _physics_process(delta: float) -> void:
 	var maxVelociDifference = max(abs(velocity.x - previousVelocity.x),
 									abs(velocity.y - previousVelocity.y))
 	if floorchecker.is_colliding():
-		if (maxVelociDifference > 10):
-			hitground.set_volume_db(linear_to_db(clamp(maxVelociDifference*0.007, 0, 1)))
+		if (maxVelociDifference > 100):
+			hitground.set_volume_db(linear_to_db(clamp(maxVelociDifference*0.004, 0, 1.2)))
 			hitground.play()
+			cam_shaker.play("shake")
 	else:
 		if (maxVelociDifference > 100):
 			# play sound

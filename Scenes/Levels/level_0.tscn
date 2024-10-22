@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=4 uid="uid://gtm6tj8hgoin"]
+[gd_scene load_steps=25 format=4 uid="uid://gtm6tj8hgoin"]
 
 [ext_resource type="Script" path="res://Scripts/levelScript.gd" id="1_agxq1"]
 [ext_resource type="Texture2D" uid="uid://cx50xi10e8wyg" path="res://Art/Tilesets/tile.png" id="2_1j4vo"]
 [ext_resource type="PackedScene" uid="uid://oj1g3i5u6a8p" path="res://Scenes/pins.tscn" id="3_s77gx"]
 [ext_resource type="PackedScene" uid="uid://d4en42hig3yqf" path="res://Scenes/goal_area.tscn" id="4_dsmu2"]
+[ext_resource type="Texture2D" uid="uid://10pd73lbcnof" path="res://Art/UI/keyboard/Arrow.png" id="4_mes36"]
 [ext_resource type="PackedScene" uid="uid://bm67c4ebptsl8" path="res://Scenes/ScreenFx/Fader.tscn" id="5_p60hh"]
 [ext_resource type="Texture2D" uid="uid://cjixaxk54j1ts" path="res://Art/Backgrounds/back0.jpg" id="6_j786m"]
+[ext_resource type="PackedScene" uid="uid://cqx28sd66x8xf" path="res://Scenes/ScreenFx/PauseMenu.tscn" id="7_57l8j"]
+[ext_resource type="Texture2D" uid="uid://dlo42bg0qpjio" path="res://Art/UI/keyboard/PrompL.png" id="8_807rp"]
+[ext_resource type="Texture2D" uid="uid://34qxxdpwe11" path="res://Art/UI/keyboard/PrompR.png" id="9_d7xs2"]
+[ext_resource type="Script" path="res://Scripts/tutorial_trigger.gd" id="11_j0ttp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvnti"]
 texture = ExtResource("2_1j4vo")
@@ -16,11 +21,192 @@ texture = ExtResource("2_1j4vo")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_nvnti")
 
+[sub_resource type="Animation" id="Animation_h3elb"]
+resource_name = "floaty"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 1),
+"update": 0,
+"values": [Vector2(-549, -278), Vector2(-533, -278), Vector2(-517, -278), Vector2(-533, -278), Vector2(-549, -278)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ArrowL:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 1),
+"update": 0,
+"values": [Vector2(549, -278), Vector2(533, -278), Vector2(517, -278), Vector2(533, -278), Vector2(549, -278)]
+}
+
+[sub_resource type="Animation" id="Animation_oxuw5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-549, -278)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ArrowL:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(549, -278)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yhr2k"]
+_data = {
+"RESET": SubResource("Animation_oxuw5"),
+"floaty": SubResource("Animation_h3elb")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykkc0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_807rp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d7xs2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bylsk"]
 size = Vector2(3330, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k14f5"]
 size = Vector2(72, 1016)
+
+[sub_resource type="Animation" id="Animation_kbvyu"]
+resource_name = "makespriteappear"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pin/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gp3q6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pin/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pin/ArrowR:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pin/ArrowL:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qb0e7"]
+resource_name = "trigger"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pin/AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pin/ArrowR:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pin/ArrowL:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewchl"]
+_data = {
+"RESET": SubResource("Animation_gp3q6"),
+"makespriteappear": SubResource("Animation_kbvyu"),
+"trigger": SubResource("Animation_qb0e7")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja1ac"]
+size = Vector2(1706, 59)
 
 [node name="level_0" type="Node2D" node_paths=PackedStringArray("fader")]
 script = ExtResource("1_agxq1")
@@ -31,6 +217,36 @@ tile_map_data = PackedByteArray("AAD7//7/AAAAAAAAAAD7////AAAAAAAAAAD7/wAAAAAAAAA
 tile_set = SubResource("TileSet_5vlu3")
 
 [node name="Pin" parent="." instance=ExtResource("3_s77gx")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pin"]
+root_node = NodePath("../ArrowR")
+libraries = {
+"": SubResource("AnimationLibrary_yhr2k")
+}
+autoplay = "floaty"
+
+[node name="ArrowR" type="Sprite2D" parent="Pin"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+z_as_relative = false
+position = Vector2(-549, -278)
+rotation = 3.14159
+texture = ExtResource("4_mes36")
+
+[node name="ArrowL" type="Sprite2D" parent="Pin"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+z_as_relative = false
+position = Vector2(549, -278)
+texture = ExtResource("4_mes36")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pin"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-271, 8)
+rotation = -3.14159
+sprite_frames = SubResource("SpriteFrames_ykkc0")
+autoplay = "default"
+frame_progress = 0.179982
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3
@@ -70,3 +286,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_j786m")
 expand_mode = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_57l8j")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ewchl")
+}
+autoplay = "makespriteappear"
+
+[node name="Area2D" type="Area2D" parent="AnimationPlayer" node_paths=PackedStringArray("animationPlayer")]
+position = Vector2(0, 258)
+script = ExtResource("11_j0ttp")
+animationPlayer = NodePath("..")
+animationName = "trigger"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationPlayer/Area2D"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_ja1ac")
+
+[connection signal="body_entered" from="AnimationPlayer/Area2D" to="AnimationPlayer/Area2D" method="_on_body_entered"]

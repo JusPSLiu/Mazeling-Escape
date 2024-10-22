@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bcwpgp73t2vga"]
+[gd_scene load_steps=13 format=4 uid="uid://bcwpgp73t2vga"]
 
 [ext_resource type="Script" path="res://Scripts/levelScript.gd" id="1_nswe3"]
 [ext_resource type="Texture2D" uid="uid://cx50xi10e8wyg" path="res://Art/Tilesets/tile.png" id="2_eywjn"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d4en42hig3yqf" path="res://Scenes/goal_area.tscn" id="5_mog76"]
 [ext_resource type="PackedScene" uid="uid://bm67c4ebptsl8" path="res://Scenes/ScreenFx/Fader.tscn" id="6_v4nt5"]
 [ext_resource type="Texture2D" uid="uid://rdrq5d8tfovo" path="res://Art/Backgrounds/backAlt3.jpg" id="7_1q1pq"]
+[ext_resource type="PackedScene" uid="uid://cqx28sd66x8xf" path="res://Scenes/ScreenFx/PauseMenu.tscn" id="8_axp32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvnti"]
 texture = ExtResource("2_eywjn")
@@ -80,5 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_1q1pq")
 expand_mode = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_axp32")]
 
 [editable path="Pin2"]

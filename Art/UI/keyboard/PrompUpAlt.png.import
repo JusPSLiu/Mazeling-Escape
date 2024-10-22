@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8lpuaelfwafu"
-path="res://.godot/imported/bladesheet.png-1ac22ba8812136ea4ac160f6f930d772.ctex"
+uid="uid://tbtnda8log6n"
+path="res://.godot/imported/PrompUpAlt.png-fcf50203d819e5b4ca83d2a634eaa497.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Decorative/bladesheet.png"
-dest_files=["res://.godot/imported/bladesheet.png-1ac22ba8812136ea4ac160f6f930d772.ctex"]
+source_file="res://Art/UI/keyboard/PrompUpAlt.png"
+dest_files=["res://.godot/imported/PrompUpAlt.png-fcf50203d819e5b4ca83d2a634eaa497.ctex"]
 
 [params]
 

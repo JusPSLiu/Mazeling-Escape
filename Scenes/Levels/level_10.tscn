@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://ceem6bkkhraaw"]
+[gd_scene load_steps=13 format=4 uid="uid://ceem6bkkhraaw"]
 
 [ext_resource type="Script" path="res://Scripts/levelScript.gd" id="1_seebx"]
 [ext_resource type="Texture2D" uid="uid://cx50xi10e8wyg" path="res://Art/Tilesets/tile.png" id="2_s87wk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c0h1onbjqgqmx" path="res://Scenes/secondary_pin.tscn" id="4_tqd5l"]
 [ext_resource type="PackedScene" uid="uid://d4en42hig3yqf" path="res://Scenes/goal_area.tscn" id="5_ullqi"]
 [ext_resource type="PackedScene" uid="uid://bm67c4ebptsl8" path="res://Scenes/ScreenFx/Fader.tscn" id="6_2kgd1"]
+[ext_resource type="PackedScene" uid="uid://cqx28sd66x8xf" path="res://Scenes/ScreenFx/PauseMenu.tscn" id="8_rtu2x"]
 [ext_resource type="Texture2D" uid="uid://n28dp4h6xfhw" path="res://Art/Backgrounds/backAlt4.jpg" id="8_tixlx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvnti"]
@@ -56,6 +57,8 @@ position = Vector2(1629, -2)
 shape = SubResource("RectangleShape2D_k14f5")
 
 [node name="GoalArea" parent="." instance=ExtResource("5_ullqi")]
+position = Vector2(128, 32)
+scale = Vector2(1.2, 1)
 
 [node name="Fader" parent="." instance=ExtResource("6_2kgd1")]
 
@@ -74,9 +77,15 @@ color = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = -4.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_tixlx")
 expand_mode = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_rtu2x")]
 
 [editable path="Pin2"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4k3qqqg4s182"
-path="res://.godot/imported/PrompK3.png-dc8b16c5b5f08fbabc6a17b582d56a04.ctex"
+uid="uid://34qxxdpwe11"
+path="res://.godot/imported/PrompR.png-5383e3a05f0765daaf3dc5b31a3a94ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/UI/keyboard/PrompK3.png"
-dest_files=["res://.godot/imported/PrompK3.png-dc8b16c5b5f08fbabc6a17b582d56a04.ctex"]
+source_file="res://Art/UI/keyboard/PrompR.png"
+dest_files=["res://.godot/imported/PrompR.png-5383e3a05f0765daaf3dc5b31a3a94ea.ctex"]
 
 [params]
 

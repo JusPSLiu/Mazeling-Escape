@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://buvonyprn58r"]
+[gd_scene load_steps=12 format=4 uid="uid://buvonyprn58r"]
 
 [ext_resource type="Texture2D" uid="uid://cx50xi10e8wyg" path="res://Art/Tilesets/tile.png" id="1_0din1"]
 [ext_resource type="Script" path="res://Scripts/levelScript.gd" id="1_d52gb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d4en42hig3yqf" path="res://Scenes/goal_area.tscn" id="4_48imf"]
 [ext_resource type="PackedScene" uid="uid://bm67c4ebptsl8" path="res://Scenes/ScreenFx/Fader.tscn" id="5_gnh0h"]
 [ext_resource type="Texture2D" uid="uid://70hfbun7hv6t" path="res://Art/Backgrounds/backAlt1.jpg" id="6_4jl3k"]
+[ext_resource type="PackedScene" uid="uid://cqx28sd66x8xf" path="res://Scenes/ScreenFx/PauseMenu.tscn" id="7_1snbx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvnti"]
 texture = ExtResource("1_0din1")
@@ -50,7 +51,6 @@ position = Vector2(1629, -2)
 shape = SubResource("RectangleShape2D_k14f5")
 
 [node name="GoalArea" parent="." instance=ExtResource("4_48imf")]
-position = Vector2(0, 32)
 
 [node name="Fader" parent="." instance=ExtResource("5_gnh0h")]
 
@@ -73,3 +73,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_4jl3k")
 expand_mode = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_1snbx")]

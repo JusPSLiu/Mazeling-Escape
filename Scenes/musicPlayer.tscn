@@ -55,6 +55,7 @@ _data = {
 }
 
 [node name="Music" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_522q1")
 bus = &"Music"
 script = ExtResource("2_w8ii7")

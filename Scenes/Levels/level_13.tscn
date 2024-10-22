@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dvwxmff0qvkno"]
+[gd_scene load_steps=13 format=4 uid="uid://dvwxmff0qvkno"]
 
 [ext_resource type="Script" path="res://Scripts/levelScript.gd" id="1_fww3q"]
 [ext_resource type="Texture2D" uid="uid://cx50xi10e8wyg" path="res://Art/Tilesets/tile.png" id="2_xr0lj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d4en42hig3yqf" path="res://Scenes/goal_area.tscn" id="5_tab21"]
 [ext_resource type="PackedScene" uid="uid://bm67c4ebptsl8" path="res://Scenes/ScreenFx/Fader.tscn" id="6_k7gbh"]
 [ext_resource type="Texture2D" uid="uid://rdrq5d8tfovo" path="res://Art/Backgrounds/backAlt3.jpg" id="7_y3vdu"]
+[ext_resource type="PackedScene" uid="uid://cqx28sd66x8xf" path="res://Scenes/ScreenFx/PauseMenu.tscn" id="8_sb6ft"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvnti"]
 texture = ExtResource("2_xr0lj")
@@ -35,11 +36,11 @@ tile_set = SubResource("TileSet_5vlu3")
 [node name="Pin2" parent="." instance=ExtResource("3_k5nkh")]
 position = Vector2(136, -40)
 
+[node name="Pin" parent="Pin2" index="1"]
+position = Vector2(256, 0)
+
 [node name="secondaryPin" parent="Pin2" instance=ExtResource("4_g45iy")]
 position = Vector2(-256, 0)
-
-[node name="Pin" parent="Pin2" index="2"]
-position = Vector2(256, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3
@@ -81,5 +82,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_y3vdu")
 expand_mode = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_sb6ft")]
 
 [editable path="Pin2"]

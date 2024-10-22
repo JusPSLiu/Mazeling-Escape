@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs7wbdcmktsve"
-path="res://.godot/imported/chair.png-4e6bc129302bf71c5a1969d684982f13.ctex"
+uid="uid://dlo42bg0qpjio"
+path="res://.godot/imported/PrompL.png-db2e502a861e7d9a4dbb3b1dd80e7118.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Decorative/chair.png"
-dest_files=["res://.godot/imported/chair.png-4e6bc129302bf71c5a1969d684982f13.ctex"]
+source_file="res://Art/UI/keyboard/PrompL.png"
+dest_files=["res://.godot/imported/PrompL.png-db2e502a861e7d9a4dbb3b1dd80e7118.ctex"]
 
 [params]
 
