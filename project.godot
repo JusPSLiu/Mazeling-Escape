@@ -10,14 +10,15 @@ config_version=5
 
 [application]
 
-config/name="maze"
+config/name="Mazeling Escape"
 run/main_scene="res://Scenes/Screens/godotSplashscreen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
 MusicPlayer="*res://Scenes/musicPlayer.tscn"
+GlobalVariables="*res://Scripts/GlobalVariables.gd"
 
 [display]
 

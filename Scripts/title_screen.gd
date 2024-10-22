@@ -15,7 +15,9 @@ func _ready() -> void:
 		newbutton.connect("pressed", play.bind(i))
 	MusicPlayer.playMusic("res://Sounds/Music/title.ogg")
 
-func play(level = 0):
+func play(level = -100):
+	if (level < 0): level = GlobalVariables.currentLevel
+	
 	if (fader.is_playing()): return
 	buttonSound.play()
 	fader.play("FadeOut")

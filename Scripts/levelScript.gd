@@ -7,6 +7,7 @@ const maxNum = 14
 
 func _ready() -> void:
 	MusicPlayer.playMusic("res://Sounds/Music/level_music.ogg")
+	GlobalVariables.currentLevel = myNum
 
 func nextLevel():
 	if (myNum >= maxNum): go_to_title()
