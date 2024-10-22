@@ -93,6 +93,8 @@ tile_set = SubResource("TileSet_5vlu3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pin"]
 modulate = Color(1, 1, 1, 0)
+z_index = -1
+z_as_relative = false
 position = Vector2(-256, 0)
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_l3jv2")

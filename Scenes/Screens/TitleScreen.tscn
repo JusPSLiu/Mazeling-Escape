@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bawhbhakk6q0"]
+[gd_scene load_steps=25 format=3 uid="uid://bawhbhakk6q0"]
 
 [ext_resource type="Texture2D" uid="uid://dpuh1u8ys504u" path="res://Art/Backgrounds/title.jpg" id="1_4neto"]
 [ext_resource type="PackedScene" uid="uid://bm67c4ebptsl8" path="res://Scenes/ScreenFx/Fader.tscn" id="1_6rpfu"]
@@ -15,13 +15,7 @@
 [ext_resource type="FontFile" uid="uid://d2esgt82wfu1x" path="res://Art/Fonts/hasting-dee-quickest.regular.otf" id="13_clkk6"]
 [ext_resource type="Texture2D" uid="uid://c16ifbt2sew8s" path="res://Art/UI/Pause/slidBar.png" id="15_oij1a"]
 [ext_resource type="Texture2D" uid="uid://cu1x6hvu0mh3x" path="res://Art/UI/Pause/slidBarClic.png" id="16_g40ql"]
-[ext_resource type="Texture2D" uid="uid://bfa3ila75qrsc" path="res://Art/UI/Pause/gear.png" id="18_jmguy"]
-[ext_resource type="Texture2D" uid="uid://bkimf272sdcmv" path="res://Art/UI/Pause/gearClic.png" id="19_h633f"]
 [ext_resource type="Texture2D" uid="uid://r5s0kyf7rdu6" path="res://Art/Backgrounds/backAlt2.jpg" id="20_6yog1"]
-[ext_resource type="Texture2D" uid="uid://bmmiiqigag568" path="res://Art/UI/Pause/gearHov.png" id="20_xte7y"]
-[ext_resource type="Texture2D" uid="uid://bkvw3u2o0ptrr" path="res://Art/UI/Pause/play.png" id="21_wa2vu"]
-[ext_resource type="Texture2D" uid="uid://7pr8c0sntenf" path="res://Art/UI/Pause/playClic.png" id="22_o5d6v"]
-[ext_resource type="Texture2D" uid="uid://c6r4w8isaslit" path="res://Art/UI/Pause/playHov.png" id="23_oraf8"]
 
 [sub_resource type="Animation" id="Animation_5v1r2"]
 length = 0.001
@@ -186,37 +180,13 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(471, 737), Vector2(471, 564)]
 }
-tracks/11/type = "value"
+tracks/11/type = "audio"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("SettingsMenu/PauseButton:position")
+tracks/11/path = NodePath("TitleAnimator/animatedSounds")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(2.4, 2.75),
-"transitions": PackedFloat32Array(0.3, 1),
-"update": 0,
-"values": [Vector2(1164, -128), Vector2(1164, 20)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("SettingsMenu/PauseButton:disabled")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0.55, 2.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/13/type = "audio"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("TitleAnimator/animatedSounds")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -224,7 +194,7 @@ tracks/13/keys = {
 }],
 "times": PackedFloat32Array(0.4)
 }
-tracks/13/use_blend = true
+tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_j6p33"]
 resource_name = "deselect"
@@ -380,10 +350,9 @@ bus = &"Sounds"
 
 [node name="darkenerRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 96.0
-offset_right = 1282.0
-offset_bottom = 352.0
+offset_left = 330.0
+offset_right = 1612.0
+offset_bottom = 488.0
 color = Color(0, 0, 0, 0.313726)
 
 [node name="Title" type="TextureRect" parent="."]
@@ -523,30 +492,6 @@ text = "                                                                        
 
 [node name="ButtonSound" type="AudioStreamPlayer" parent="SettingsMenu"]
 
-[node name="PauseButton" type="TextureButton" parent="SettingsMenu"]
-offset_left = 1164.0
-offset_top = 20.0
-offset_right = 1284.0
-offset_bottom = 140.0
-scale = Vector2(0.8, 0.8)
-focus_mode = 0
-toggle_mode = true
-texture_normal = ExtResource("18_jmguy")
-texture_pressed = ExtResource("19_h633f")
-texture_hover = ExtResource("20_xte7y")
-
-[node name="ResumeButton" type="TextureButton" parent="SettingsMenu/PauseButton"]
-visible = false
-layout_mode = 0
-offset_right = 96.0
-offset_bottom = 96.0
-focus_mode = 0
-toggle_mode = true
-texture_normal = ExtResource("21_wa2vu")
-texture_pressed = ExtResource("22_o5d6v")
-texture_hover = ExtResource("23_oraf8")
-flip_h = true
-
 [node name="LevelLayer" type="CanvasLayer" parent="."]
 visible = false
 
@@ -597,6 +542,4 @@ columns = 16
 [connection signal="pressed" from="ChapterSelectButton" to="." method="showLevels"]
 [connection signal="value_changed" from="SettingsMenu/ColorRect/VBoxContainer/MusicSlider" to="SettingsMenu" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="SettingsMenu/ColorRect/VBoxContainer/SoundSlider" to="SettingsMenu" method="_on_sound_slider_value_changed"]
-[connection signal="pressed" from="SettingsMenu/PauseButton" to="SettingsMenu" method="togglePauseFall"]
-[connection signal="pressed" from="SettingsMenu/PauseButton/ResumeButton" to="SettingsMenu" method="togglePauseFall"]
 [connection signal="pressed" from="LevelLayer/ChapterMenu/Return" to="." method="hideLevels"]
