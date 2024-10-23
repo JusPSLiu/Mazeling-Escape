@@ -1,6 +1,6 @@
 extends Node2D
 
-const maxNum = 14
+const maxNum = 15
 
 @export var myNum = 0
 @export var fader : AnimationPlayer
